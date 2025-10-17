@@ -3,80 +3,80 @@ const products = [
   {
     name: "Bermuda Swell",
     price: 60000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3639.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3638.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3639.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3638.PNG",
     urlBuy: "#",
     urlView: "#"
   },
   {
     name: "Bermuda Bay",
     price: 60000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3635.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3634.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3635.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3634.PNG",
     urlBuy: "#",
     urlView: "#"
   },
   {
     name: "Bermuda Tide",
     price: 60000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3637.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3636.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3637.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3636.PNG",
     urlBuy: "#",
     urlView: "#"
   },
   {
     name: "Remera Set",
     price: 35000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3619.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3620.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3619.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3620.PNG",
     urlBuy: "#",
     urlView: "#"
   },
     {
     name: "Remera Sunset Palm",
     price: 35000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3613.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3614.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3613.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3614.PNG",
     urlBuy: "#",
     urlView: "#"
   },
     {
     name: "Remera Ocean Palm",
     price: 35000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3621.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3616.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3621.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3616.PNG",
     urlBuy: "#",
     urlView: "#"
   },
     {
     name: "Remera Dune",
     price: 35000,
-    imgFront: "PrendasDigitales/Almost Home/IMG_3617.PNG",
-    imgBack: "PrendasDigitales/Almost Home/IMG_3618.PNG",
+    imgFront: "assets/PrendasDigitales/Almost Home/IMG_3617.PNG",
+    imgBack: "assets/PrendasDigitales/Almost Home/IMG_3618.PNG",
     urlBuy: "#",
     urlView: "#"
   },
     {
     name: "Remera Zion",
     price: 35000,
-    imgFront: "PrendasDigitales/Lost in the city/IMG_3292.PNG",
-    imgBack: "PrendasDigitales/Lost in the city/IMG_3291.PNG",
+    imgFront: "assets/PrendasDigitales/Lost in the city/IMG_3292.PNG",
+    imgBack: "assets/PrendasDigitales/Lost in the city/IMG_3291.PNG",
     urlBuy: "#",
     urlView: "#"
   },
     {
     name: "Remera Nalu",
     price: 35000,
-    imgFront: "PrendasDigitales/Lost in the city/IMG_3286.PNG",
-    imgBack: "PrendasDigitales/Lost in the city/IMG_3287.PNG",
+    imgFront: "assets/PrendasDigitales/Lost in the city/IMG_3286.PNG",
+    imgBack: "assets/PrendasDigitales/Lost in the city/IMG_3287.PNG",
     urlBuy: "#",
     urlView: "#"
   },
     {
     name: "Remera Kaya",
     price: 35000,
-    imgFront: "PrendasDigitales/Lost in the city/IMG_3290.PNG",
-    imgBack: "PrendasDigitales/Lost in the city/IMG_3291.PNG",
+    imgFront: "assets/PrendasDigitales/Lost in the city/IMG_3290.PNG",
+    imgBack: "assets/PrendasDigitales/Lost in the city/IMG_3291.PNG",
     urlBuy: "#",
     urlView: "#"
   },
