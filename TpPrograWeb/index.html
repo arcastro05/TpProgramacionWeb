@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rels</title>
+  <meta name="description" content="Rels Surf · New In · Colecciones · Sale · Looks" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Titulares similares a tu mockup -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="main.js?v=3"></script>
+
+
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <nav class="nav-left">
+        <a href="#newin">Productos</a>
+        <a href="#collections">Colecciones</a>
+        <a href="#nosotros">Nosotros</a>
+      </nav>
+
+      <a class="brand" href="#" aria-label="Inicio">
+        <img src="Logos/LogoBlanco3D.gif" alt="Rels" />
+      </a>
+
+      <nav class="nav-right">
+        <a href="#register">Registrarse</a>
+        <a href="#account">Mi Cuenta</a>
+        <button class="icon-btn" aria-label="Buscar" id="openSearch">
+          <!-- search icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.32 12.9l4.39 4.4-1.42 1.4-4.39-4.38A8 8 0 1 1 10 2m0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4Z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Carrito">
+          <!-- cart icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 18a2 2 0 1 0 .001 3.999A2 2 0 0 0 7 18Zm10 0a2 2 0 1 0 .001 3.999A2 2 0 0 0 17 18ZM6.2 4l.8 2H21l-2 8H7L4.6 4H2V2h4.2ZM8 14h9.2l1.5-6H7.6l.9 3h8v2H8.3L8 14Z"/></svg>
+        </button>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- buscador modal simple -->
+    <div class="searchbar" id="searchbar" hidden>
+      <div class="container">
+        <form id="searchForm" role="search">
+          <input type="search" placeholder="Buscar productos..." aria-label="Buscar" />
+          <button class="btn">Buscar</button>
+          <button class="btn btn-ghost" type="button" id="closeSearch">Cerrar</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CARROUSEL (HERO) ===== -->
+  <section class="carousel" id="hero">
+    <button class="c-arrow c-prev" aria-label="Anterior">‹</button>
+    <button class="c-arrow c-next" aria-label="Siguiente">›</button>
+
+    <div class="c-track" id="cTrack">
+      <div class="c-slide is-active">
+        <img src="Logos/1.png" alt="Rels 2025" />
+        <div class="c-caption"></div>
+      </div>
+      <div class="c-slide">
+        <img src="Logos/2.png" alt="Nueva colección" />
+      </div>
+      <div class="c-slide">
+        <img src="Logos/3.png" alt="Lifestyle" />
+      </div>
+    </div>
+
+    <div class="c-dots" id="cDots" aria-label="Indicadores"></div>
+  </section>
+
+  <!-- ===== NEW IN – OUT NOW ===== -->
+   <section id="newin" class="section section-light">
+  <div class="container">
+    <h2 class="display">New In – Out Now</h2>
+    <div id="newInGrid" class="grid grid-4"></div>
+  </div>
+</section>
+
+
+  <!-- ===== COLECCIONES (MOSAICO CON LINKS) ===== -->
+  <section id="collections" class="section">
+    <div class="container">
+      <div class="mosaic">
+        <a class="tile" href="/coleccion/1"><img src="fotos/IMG_3798.JPEG" alt="Colección 1"></a>
+        <a class="tile" href="/coleccion/2"><img src="fotos/Copia de IMG_2349.jpg" alt="Colección 2"></a>
+        <a class="tile" href="/coleccion/3"><img src="fotos/IMG_3887.jpg" alt="Colección 3"></a>
+        <a class="tile" href="/coleccion/4"><img src="fotos/IMG_0880.JPG" alt="Colección 4"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SALE ===== -->
+  <section id="sale" class="section section-light">
+    <div class="container">
+      <h2 class="display">¡WINTER SALE!</h2>
+      <div class="grid grid-3">
+        <article class="sale-card">
+          <span class="badge">40% OFF</span>
+          <img src="fotos/IMG_1905.jpg" alt="Sale 1">
+        </article>
+        <article class="sale-card">
+          <span class="badge">40% OFF</span>
+          <img src="fotos/IMG_1895.jpg" alt="Sale 2">
+        </article>
+        <article class="sale-card">
+          <span class="badge">40% OFF</span>
+          <img src="fotos/IMG_1919.jpg" alt="Sale 3">
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOP THE LOOK (CARRUSEL HORIZONTAL) ===== -->
+  <section id="looks" class="section">
+    <div class="container looks">
+      <h2 class="display">SHOP THE LOOK</h2>
+
+      <div class="hscroll" id="lookTrack">
+        <button class="hs-arrow hs-prev" aria-label="Anterior">‹</button>
+        <div class="hwrap">
+          <img src="./assets/look-1.jpg" alt="Look 1" class="look">
+          <img src="./assets/look-2.jpg" alt="Look 2" class="look">
+          <img src="./assets/look-3.jpg" alt="Look 3" class="look">
+          <img src="./assets/look-4.jpg" alt="Look 4" class="look">
+          <img src="./assets/look-5.jpg" alt="Look 5" class="look">
+          <img src="./assets/look-6.jpg" alt="Look 6" class="look">
+        </div>
+        <button class="hs-arrow hs-next" aria-label="Siguiente">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL MEDIAS (VIDEO) ===== -->
+<section id="social" class="section section-light">
+  <div class="container">
+    <h2 class="display">Social Medias</h2>
+    <div class="video-wrap">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/jyDqEr9usxw?rel=0&modestbranding=1"
+    title="Rels Surf"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+</div>
+  </div>
+</section>
+
+  <!-- SECCIÓN NOSOTROS -->
+<section id="nosotros" class="section-nosotros">
+  <div class="container">
+    <h2 class="titulo-nosotros">SOBRE NOSOTROS</h2>
+
+    <div class="nosotros-grid">
+      <div class="imagenes-nosotros">
+        <img src="fotos/IMG_1232.JPG" alt="Equipo Rels" class="img-nos">
+        <img src="fotos/IMG_1943.JPG" alt="Lifestyle Rels" class="img-nos">
+        <img src="fotos/IMG_0880.JPG" alt="Producción Rels" class="img-nos">
+      </div>
+
+      <div class="texto-nosotros">
+        <p>
+          Rels nació en 2023 en Argentina, inspirada en la energía del mar, el sol y la libertad del estilo surfer.
+          Somos una marca que combina diseño, comodidad y autenticidad. Cada prenda refleja un estilo de vida
+          conectado con la naturaleza, el deporte y la comunidad.
+        </p>
+        <p>
+          Nuestro objetivo es ofrecer productos de calidad, hechos con dedicación y conciencia, para quienes buscan
+          expresar quiénes son sin perder la esencia de lo simple.  
+          <strong>Rels no es solo ropa, es una forma de vivir. THIS IS RELS.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== INSTAGRAM FEED ===== -->
+<section id="instagram" class="section">
+  <div class="container">
+    <h2 class="display">Instagram</h2>
+    <div class="insta-strip" id="instaEmbed">
+  <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DP2ZKRejATg/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+
+  <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DPzewXkD63W/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DPpfAFSDhJO/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DPm08CqjUaa/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+</div>
+<script async src="https://www.instagram.com/embed.js"></script>
+  </div>
+</section>
+
+
+  <!-- ===== RESEÑAS ===== -->
+  <section id="reviews" class="section section-light">
+    <div class="container">
+      <div class="reviews">
+        <article class="review">
+          <div class="avatar"></div>
+          <div class="stars" aria-label="5 estrellas">★★★★★</div>
+          <p>“Calidad tremenda, llegó rapidísimo. Recomendado.”</p>
+        </article>
+        <article class="review">
+          <div class="avatar"></div>
+          <div class="stars" aria-label="5 estrellas">★★★★★</div>
+          <p>“La tela es increíble y los talles van perfectos.”</p>
+        </article>
+        <article class="review">
+          <div class="avatar"></div>
+          <div class="stars" aria-label="5 estrellas">★★★★★</div>
+          <p>“Mi marca favorita del invierno 2025.”</p>
+        </article>
+      </div>
+
+      <div class="service-bar">
+        <div class="svc">
+          <div class="svc-ico">🚚</div>
+          <div>
+            <strong>ENVÍOS A TODO EL PAÍS</strong>
+            <div>Rápido y seguro</div>
+          </div>
+        </div>
+        <div class="svc">
+          <div class="svc-ico">💳</div>
+          <div>
+            <strong>CON TODAS LAS TARJETAS</strong>
+            <div>Cuotas y promos</div>
+          </div>
+        </div>
+        <div class="svc">
+          <div class="svc-ico">🔒</div>
+          <div>
+            <strong>COMPRA 100% SEGURA</strong>
+            <div>Protegemos tus datos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER / NEWSLETTER ===== -->
+  <footer class="site-footer" id="register">
+    <div class="container footer-wrap">
+      <div class="newsletter">
+        <h3>Unite a la comunidad de Rels</h3>
+        <p>y accedé a ofertas exclusivas</p>
+        <form id="newsletterForm" novalidate>
+          <input type="email" id="email" placeholder="Ingresar mail" required />
+          <button class="send" aria-label="Enviar">➜</button>
+        </form>
+        <p id="formMsg" class="note"></p>
+      </div>
+
+      <div class="footer-brand">
+        <img src="Logos/LogoNegroRels.png" alt="Rels">
+        <ul class="social">
+          <li><a aria-label="Instagram" href="https://instagram.com/" target="_blank" rel="noopener">IG</a></li>
+          <li><a aria-label="WhatsApp" href="#" target="_blank" rel="noopener">WA</a></li>
+          <li><a aria-label="TikTok" href="#" target="_blank" rel="noopener">TT</a></li>
+          <li><a aria-label="YouTube" href="#" target="_blank" rel="noopener">YT</a></li>
+        </ul>
+        <p>© <span id="year"></span> Rels — Surfing Identity</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
