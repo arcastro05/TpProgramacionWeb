@@ -1,3 +1,4 @@
+console.log("hola rels");
 /* ===== NAV MOBILE & SEARCH ===== */
 const navToggle = document.getElementById('navToggle');
 const openSearchBtn = document.getElementById('openSearch');
@@ -44,31 +45,32 @@ function goTo(i){
 prev?.addEventListener('click', ()=> goTo(index - 1));
 next?.addEventListener('click', ()=> goTo(index + 1));
 
-let auto = setInterval(()=>goTo(index + 1), 5000);
-['mouseenter','focusin'].forEach(ev => track.addEventListener(ev, ()=>clearInterval(auto)));
-['mouseleave','focusout'].forEach(ev => track.addEventListener(ev, ()=>auto = setInterval(()=>goTo(index + 1), 5000)));
+// ===== CAROUSEL AUTOMÁTICO =====
+setInterval(() => {
+  goTo(index + 1);
+}, 5000);
 
-import { products } from "productos.js";
 
-// selecciona solo los primeros 4 o 8
-const featured = products.slice(0, 4);
-const grid = document.querySelector("#newInGrid");
+// import { products } from "./productos.js";
 
-function renderCards(list) {
-  grid.innerHTML = list.map(p => `
-    <article class="card">
-      <div class="thumb">
-        <img class="front" src="${p.imgFront}" alt="${p.name}">
-        <img class="back" src="${p.imgBack}" alt="${p.name}">
-      </div>
-      <div class="sep"></div>
-      <h3 class="name">${p.name}</h3>
-      <div class="price">$${p.price.toLocaleString('es-AR')}</div>
-    </article>
-  `).join("");
-}
-renderCards(featured);
+// // selecciona solo los primeros 4 o 8
+// const featured = products.slice(0, 4);
+// const grid = document.querySelector("#newInGrid");
 
+// function renderCards(list) {
+//   grid.innerHTML = list.map(p => `
+//     <article class="card">
+//       <div class="thumb">
+//         <img class="front" src="${p.imgFront}" alt="${p.name}">
+//         <img class="back" src="${p.imgBack}" alt="${p.name}">
+//       </div>
+//       <div class="sep"></div>
+//       <h3 class="name">${p.name}</h3>
+//       <div class="price">$${p.price.toLocaleString('es-AR')}</div>
+//     </article>
+//   `).join("");
+// }
+// renderCards(featured);
 
 /* ===== SHOP THE LOOK – HSCROLL ARROWS ===== */
 const hwrap = document.querySelector('.hwrap');
@@ -95,41 +97,6 @@ function setMsg(text, ok){
   msg.textContent = text;
   msg.style.color = ok ? '#7CFFB2' : '#FF8B8B';
 }
-(function(){
-  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw1ZiIt5_zJcrPTe6OtRdVlssFc3ElFPQHg3IYdPsuUzUZzmO35oQqf980wZaR_Y9wC/exec";
-
-  const overlay = document.getElementById('popup-rels');
-  const form    = document.getElementById('rels-form');
-  const close   = document.getElementById('rels-close');
-  const toast   = document.getElementById('mensaje-exito');
-
-  function cerrar(){ if(overlay){ overlay.style.opacity=0; overlay.style.pointerEvents='none'; } }
-  function showToast(msg){
-    if(!toast) return;
-    toast.textContent = msg; toast.style.display = 'block';
-    setTimeout(()=> toast.style.display='none', 4000);
-  }
-
-  if (close) close.addEventListener('click', cerrar);
-  if (overlay) overlay.addEventListener('click', e => { if(e.target === overlay) cerrar(); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') cerrar(); });
-
-  if (form){
-    form.addEventListener('submit', async e=>{
-      e.preventDefault();
-      const data = new FormData(form);
-      const nombre = form.nombre?.value || '';
-      try{
-        const res  = await fetch(WEBAPP_URL, { method:'POST', body:data });
-        const json = await res.json().catch(()=>({ok:true}));
-        if (json.ok !== false){
-          form.reset(); cerrar();
-          showToast(`¡Bienvenido a la comunidad Rels, ${nombre}!`);
-        } else { alert('Error al enviar. Probá más tarde.'); }
-      }catch(_){ alert('Hubo un problema. Probá más tarde.'); }
-    });
-  }
-})();
 /* ===== INSTAGRAM FEED REAL (opcional)
    Para un feed automático necesitás usar la Graph API de Instagram (Meta) con un Access Token.
    Flujo típico:

@@ -10,7 +10,8 @@
   <!-- Titulares similares a tu mockup -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <script type="module" src="main.js"></script>
+  <script type="module" src="main.js?v=3"></script>
+
 
 </head>
 <body>
@@ -66,7 +67,7 @@
     <div class="c-track" id="cTrack">
       <div class="c-slide is-active">
         <img src="Logos/1.png" alt="Rels 2025" />
-        <div class="c-caption"><h1>Rels 2025</h1></div>
+        <div class="c-caption"></div>
       </div>
       <div class="c-slide">
         <img src="Logos/2.png" alt="Nueva colección" />
@@ -92,10 +93,10 @@
   <section id="collections" class="section">
     <div class="container">
       <div class="mosaic">
-        <a class="tile" href="/coleccion/1"><img src="./assets/col-1.jpg" alt="Colección 1"></a>
-        <a class="tile" href="/coleccion/2"><img src="./assets/col-2.jpg" alt="Colección 2"></a>
-        <a class="tile" href="/coleccion/3"><img src="./assets/col-3.jpg" alt="Colección 3"></a>
-        <a class="tile" href="/coleccion/4"><img src="./assets/col-4.jpg" alt="Colección 4"></a>
+        <a class="tile" href="/coleccion/1"><img src="fotos/IMG_3798.JPEG" alt="Colección 1"></a>
+        <a class="tile" href="/coleccion/2"><img src="fotos/Copia de IMG_2349.jpg" alt="Colección 2"></a>
+        <a class="tile" href="/coleccion/3"><img src="fotos/IMG_3887.jpg" alt="Colección 3"></a>
+        <a class="tile" href="/coleccion/4"><img src="fotos/IMG_0880.JPG" alt="Colección 4"></a>
       </div>
     </div>
   </section>
@@ -107,15 +108,15 @@
       <div class="grid grid-3">
         <article class="sale-card">
           <span class="badge">40% OFF</span>
-          <img src="./assets/sale-1.jpg" alt="Sale 1">
+          <img src="fotos/IMG_1905.jpg" alt="Sale 1">
         </article>
         <article class="sale-card">
           <span class="badge">40% OFF</span>
-          <img src="./assets/sale-2.jpg" alt="Sale 2">
+          <img src="fotos/IMG_1895.jpg" alt="Sale 2">
         </article>
         <article class="sale-card">
           <span class="badge">40% OFF</span>
-          <img src="./assets/sale-3.jpg" alt="Sale 3">
+          <img src="fotos/IMG_1919.jpg" alt="Sale 3">
         </article>
       </div>
     </div>
@@ -142,22 +143,21 @@
   </section>
 
   <!-- ===== SOCIAL MEDIAS (VIDEO) ===== -->
-  <section id="social" class="section section-light">
-    <div class="container">
-      <h2 class="display">Social Medias</h2>
-      <div class="video-wrap">
-        <!-- Reemplazá el ID del video -->
-        <iframe
-          src="https://www.tiktok.com/@rels.ar/video/7560786635571350840"
-          title="Rels Surf"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-  </section>
+<section id="social" class="section section-light">
+  <div class="container">
+    <h2 class="display">Social Medias</h2>
+    <div class="video-wrap">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/jyDqEr9usxw?rel=0&modestbranding=1"
+    title="Rels Surf"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+</div>
+  </div>
+</section>
 
   <!-- SECCIÓN NOSOTROS -->
 <section id="nosotros" class="section-nosotros">
@@ -188,19 +188,34 @@
 </section>
 
   <!-- ===== INSTAGRAM FEED ===== -->
-  <section id="instagram" class="section">
-    <div class="container">
-      <h2 class="display">Instagram</h2>
-      <div class="insta-strip">
-        <article class="insta-card"><img src="https://www.instagram.com/p/DPUE8obDhpn/?img_index=1" alt="IG 1"></article>
-        <article class="insta-card"><img src="https://www.instagram.com/p/DPHywVzD6sq/?img_index=1" alt="IG 2"></article>
-        <article class="insta-card"><img src="https://www.instagram.com/p/DPFG5jajwgG/" alt="IG 3"></article>
-        <article class="insta-card"><img src="https://www.instagram.com/p/DNOkCa6xlHy/" alt="IG 4"></article>
-        <article class="insta-card"><img src="https://www.instagram.com/p/DMqEzagsfPB/?img_index=1" alt="IG 5"></article>
-      </div>
-      <!-- Nota: para traer el feed real, hay que usar la Graph API de Meta o un servicio embed; te dejo hook en app.js -->
-    </div>
-  </section>
+<section id="instagram" class="section">
+  <div class="container">
+    <h2 class="display">Instagram</h2>
+    <div class="insta-strip" id="instaEmbed">
+  <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DP2ZKRejATg/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+
+  <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DPzewXkD63W/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DPpfAFSDhJO/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/reel/DPm08CqjUaa/"
+    data-instgrm-version="14" style="background:#fff; border-radius:12px; margin:0;">
+  </blockquote>
+</div>
+<script async src="https://www.instagram.com/embed.js"></script>
+  </div>
+</section>
+
 
   <!-- ===== RESEÑAS ===== -->
   <section id="reviews" class="section section-light">
@@ -270,63 +285,9 @@
           <li><a aria-label="TikTok" href="#" target="_blank" rel="noopener">TT</a></li>
           <li><a aria-label="YouTube" href="#" target="_blank" rel="noopener">YT</a></li>
         </ul>
+        <p>© <span id="year"></span> Rels — Surfing Identity</p>
       </div>
     </div>
-    <!-- <div class="foot-note">© <span id="year"></span> Rels · Buenos Aires</div>
-    <div id="popup-rels" aria-hidden="true">
-  <div class="contenido" role="dialog" aria-modal="true" aria-label="Sumate a Rels">
-    <div class="relsh">
-      <span class="cerrar" id="rels-close" aria-label="Cerrar">&times;</span>
-    </div>
-
-    <div class="relsb">
-      <h2>Sumate a Rels</h2>
-      <p>Completá tus datos y obtené un <b>10% OFF</b> en tu primera compra</p>
-
-      <form class="formulario" id="rels-form" novalidate>
-        <div class="campo">
-          <label>Nombre <span>*</span></label>
-          <input type="text" name="nombre" required>
-        </div>
-        <div class="campo">
-          <label>Apellido <span>*</span></label>
-          <input type="text" name="apellido" required>
-        </div>
-
-        <div class="campo">
-          <label>Email <span>*</span></label>
-          <input type="email" name="email" required>
-        </div>
-        <div class="campo">
-          <label>Fecha de nacimiento <span>*</span></label>
-          <input type="date" name="fecha" required>
-        </div>
-
-        <div class="campo full">
-          <label>Género <span>*</span></label>
-          <select name="genero" required>
-            <option value="">Seleccionar</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
-            <option value="prefiero_no_decirlo">Prefiero no decirlo</option>
-          </select>
-        </div>
-
-        <label class="checkline full">
-          <input type="checkbox" name="consentimiento" required>
-          Acepto recibir novedades y beneficios por email
-        </label>
-
-        <input class="full" type="submit" value="Enviar">
-      </form>
-    </div>
-  </div>
-</div>
-
-<div id="mensaje-exito"></div> -->
   </footer>
-
-  <script src="main.js" defer></script>
 </body>
 </html>
