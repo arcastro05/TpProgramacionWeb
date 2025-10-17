@@ -87,9 +87,6 @@ form?.addEventListener('submit', (e) => {
     setMsg('Ingresá un email válido', false); return;
   }
 
-  // TODO: conectar a tu Apps Script o backend:
-  // fetch('TU_WEBHOOK', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email}) })
-
   setMsg('¡Gracias! Te sumamos a la comunidad 🙌', true);
   form.reset();
 });
@@ -97,13 +94,3 @@ function setMsg(text, ok){
   msg.textContent = text;
   msg.style.color = ok ? '#7CFFB2' : '#FF8B8B';
 }
-/* ===== INSTAGRAM FEED REAL (opcional)
-   Para un feed automático necesitás usar la Graph API de Instagram (Meta) con un Access Token.
-   Flujo típico:
-   1) Crear App en Meta for Developers
-   2) Permisos instagram_basic, pages_show_list, etc.
-   3) Obtener User Token y (opcional) Long-Lived Token
-   4) GET https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,thumbnail_url,media_type&access_token=TOKEN
-   5) Renderizar las imágenes/permalinks acá.
-   Por la política de CORS/seguridad, conviene llamarlo desde tu backend y entregar JSON al front.
-*/

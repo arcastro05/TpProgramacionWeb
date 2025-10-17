@@ -1,4 +1,4 @@
-// 🔹 Lista de productos (podés traerla de un JSON o de tu backend)
+// 🔹 Lista de productos 
 const products = [
   {
     name: "Bermuda Swell",
@@ -80,7 +80,6 @@ const products = [
     urlBuy: "#",
     urlView: "#"
   },
-  // ...agregá todos los que quieras
 ];
 
 const $grid = document.getElementById("productGrid");
@@ -90,7 +89,7 @@ function render() {
   $grid.innerHTML = products.map(p => cardHTML(p)).join("");
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Soporte para dispositivos táctiles: tap para alternar imagen
+  // Soporte para dispositivos táctiles
   const cards = document.querySelectorAll(".product-card");
   cards.forEach(card => {
     const front = card.querySelector("img.front");
@@ -136,8 +135,7 @@ form?.addEventListener('submit', (e) => {
     setMsg('Ingresá un email válido', false); return;
   }
 
-  // TODO: conectar a tu Apps Script o backend:
-  // fetch('TU_WEBHOOK', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email}) })
+
 
   setMsg('¡Gracias! Te sumamos a la comunidad 🙌', true);
   form.reset();

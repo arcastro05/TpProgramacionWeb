@@ -3,9 +3,9 @@
   --ink:#ffffff;
   --muted:#c9c9c9;
   --panel:#0f0f10;
-  --light:#d7dee1; /* gris celestito de tus mocks */
-  --accent:#111;   /* bordes/fondo oscuro */
-  --brand:#000;    /* podés ajustar si querés un color */
+  --light:#d7dee1; 
+  --accent:#111;   
+  --brand:#000;    
   --radius:20px;
   --shadow:0 10px 32px rgba(0,0,0,.35);
   --container:1200px;
@@ -91,6 +91,37 @@ img{ max-width:100%; display:block }
   width:10px; height:10px; border-radius:50%; background:#ffffff66; border:0; cursor:pointer;
 }
 .c-dots button.is-active{ background:#fff }
+
+/* ===== PATCH: HERO RESPONSIVE EN MÓVILES ===== */
+
+@media (max-width: 992px){
+  .c-slide img{
+    height: 86vh;        
+  }
+}
+
+@media (max-width: 768px){
+  .c-slide img{
+    height: 100vh;        
+  }
+  @supports (height: 100svh){
+    .c-slide img{ height: 100svh; }  
+  }
+
+  .c-prev, .c-next{ width:38px; height:38px; top:50%; transform:translateY(-50%); }
+  .c-prev{ left:8px; } .c-next{ right:8px; }
+  #cDots{ bottom:8px; gap:6px; }
+  #cDots button{ width:8px; height:8px; }
+}
+
+@media (max-width: 380px){
+  .c-slide img{
+    height: 105vh;
+  }
+  @supports (height: 100svh){
+    .c-slide img{ height: 105svh; }
+  }
+}
 
 /* ===== GRID CARDS ===== */
 .grid{ display:grid; gap:1rem; }
@@ -209,15 +240,56 @@ img{ max-width:100%; display:block }
 }
 
 
-/* ===== INSTAGRAM STRIP ===== */
+/* ===== INSTAGRAM ===== */
 .insta-strip{
-  display:flex; gap:1rem; overflow:auto; padding:.4rem 0;
+  display: flex;                 
+  gap: 1rem;
+  overflow-x: auto;              
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory; 
+  -webkit-overflow-scrolling: touch;
+  padding: .6rem 0 1.2rem;
 }
-.insta-card{
-  background:#111; border-radius:16px; padding:.5rem; min-width: 240px;
+.insta-card-embed{
+  flex: 0 0 auto;                
+  width: clamp(260px, 32vw, 320px);
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  background: #fff;
   box-shadow: var(--shadow);
+  overflow: hidden;
+  scroll-snap-align: start;      
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.insta-card img{ border-radius:12px; height: 300px; object-fit:cover; }
+.insta-card-embed:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(0,0,0,.28);
+}
+.insta-embed{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.insta-strip::before,
+.insta-strip::after{
+  content:"";
+  position: sticky;
+  top:0; bottom:0;
+  width:40px;
+  pointer-events:none;
+}
+.insta-strip::before{
+  left:0;  background: linear-gradient(90deg, #fff, transparent);
+}
+.insta-strip::after{
+  right:0; background: linear-gradient(-90deg, #fff, transparent);
+}
+
+.insta-strip::-webkit-scrollbar{ height: 6px; }
+.insta-strip::-webkit-scrollbar-thumb{ background: #ddd; border-radius: 999px; }
+
 
 /* ===== REVIEWS ===== */
 .reviews{
@@ -274,12 +346,11 @@ img{ max-width:100%; display:block }
   *,*::before,*::after{ box-sizing:border-box; }
 
   :root{
-    /* La tarjeta nunca es full-screen. En móvil la hago más chica. */
     --card-w: clamp(300px, 88vw, 520px);
     --body-bg: #e6e3e1;
     --radius: 16px;
     --shadow: 0 20px 60px rgba(0,0,0,.45);
-    --header-img: url("fotos/ultima_correct.png");
+    --header-img: url("assets/fotos/ultima_correct.png");
   }
 
   /* Overlay centrado */
@@ -288,13 +359,12 @@ img{ max-width:100%; display:block }
     position:fixed; inset:0; z-index:999999;
     display:flex; align-items:center; justify-content:center;
     background:rgba(0,0,0,.6);
-    padding: 12px;                   /* aire en bordes */
+    padding: 12px;                   
     opacity:0; pointer-events:none; transition:opacity .35s ease;
-    animation: relsEnable .001s linear 3s forwards; /* aparece a los 3s */
+    animation: relsEnable .001s linear 3s forwards; 
   }
   @keyframes relsEnable{ to{ opacity:1; pointer-events:auto; } }
 
-  /* Tarjeta (sin scroll en móvil: todo entra) */
   #popup-rels .contenido{
     background:var(--body-bg);
     width: var(--card-w);
@@ -330,7 +400,6 @@ img{ max-width:100%; display:block }
   #popup-rels h2{ margin:0 0 6px; font-size:26px; text-align:center; color:#111; }
   #popup-rels p{  margin:0 0 14px; font-size:14px; text-align:center; color:#333; }
 
-  /* Form: 2 columnas desktop / 1 móvil */
   .formulario{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
   .formulario .full{ grid-column: 1 / -1; }
   .campo{ display:flex; flex-direction:column; gap:6px; min-width:0; }
@@ -363,7 +432,6 @@ img{ max-width:100%; display:block }
   .formulario input[type="submit"]:hover{ opacity:.96; }
   .formulario input[type="submit"]:active{ transform: translateY(2px); box-shadow:0 4px 0 #1a1a1a,0 6px 14px rgba(0,0,0,.25); }
 
-  /* Toast */
   #mensaje-exito{
     position:fixed; top:20px; left:50%; transform:translateX(-50%);
     background:#111; color:#fff; padding:10px 18px; border-radius:10px;
@@ -371,11 +439,11 @@ img{ max-width:100%; display:block }
     box-shadow:0 6px 20px rgba(0,0,0,.25); font-size:14px;
   }
 
-  /* ===== MOBILE TUNING (entra todo sin barra) ===== */
+  /* ===== MOBILE TUNING ===== */
   @media (max-width: 560px){
-    :root{ --card-w: 92vw; }               /* aún más chico */
-    .relsh{ height: 92px; }                /* header bajito */
-    .relsb{ padding: 14px 14px 16px; }     /* menos padding */
+    :root{ --card-w: 92vw; }               
+    .relsh{ height: 92px; }                
+    .relsb{ padding: 14px 14px 16px; }     
     #popup-rels h2{ font-size: 22px; }
     #popup-rels p{  font-size: 13px; margin-bottom: 12px; }
 
@@ -387,8 +455,8 @@ img{ max-width:100%; display:block }
     .formulario input[type="email"],
     .formulario input[type="date"],
     .formulario select{
-      height: 38px;              /* más compacto para que quepa todo */
-      font-size: 15px;           /* evita zoom iOS y sigue chico */
+      height: 38px;              
+      font-size: 15px;           
       padding: 8px 12px;
     }
 
@@ -400,7 +468,6 @@ img{ max-width:100%; display:block }
     }
   }
 
-  /* Teléfonos MUY chicos */
   @media (max-width: 360px){
     :root{ --card-w: 94vw; }
     .relsh{ height: 84px; }
