@@ -11,16 +11,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script type="module" src="main.js?v=3"></script>
+      <!-- CSS de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
+<!-- JS de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>   
 </head>
 <body>
 
   <!-- ===== NAVBAR ===== -->
   <header class="site-header">
+    <div id="navBackdrop" class="nav-backdrop" hidden></div>
     <div class="container nav">
       <nav class="nav-left">
-        <a href="#newin">Productos</a>
+        <a href="#newin">New In</a>
+        <a href="productos.html">Productos</a>
         <a href="#collections">Colecciones</a>
         <a href="#nosotros">Nosotros</a>
       </nav>
@@ -31,7 +36,6 @@
 
       <nav class="nav-right">
         <a href="#register">Registrarse</a>
-        <a href="#account">Mi Cuenta</a>
         <button class="icon-btn" aria-label="Buscar" id="openSearch">
           <!-- search icon -->
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.32 12.9l4.39 4.4-1.42 1.4-4.39-4.38A8 8 0 1 1 10 2m0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4Z"/></svg>
@@ -60,25 +64,27 @@
   </header>
 
   <!-- ===== CARROUSEL (HERO) ===== -->
-  <section class="carousel" id="hero">
-    <button class="c-arrow c-prev" aria-label="Anterior">‹</button>
-    <button class="c-arrow c-next" aria-label="Siguiente">›</button>
-
-    <div class="c-track" id="cTrack">
-      <div class="c-slide is-active">
-        <img src="assets/Logos/1.png" alt="Rels 2025" />
-        <div class="c-caption"></div>
-      </div>
-      <div class="c-slide">
-        <img src="assets/Logos/2.png" alt="Nueva colección" />
-      </div>
-      <div class="c-slide">
-        <img src="assets/Logos/3.png" alt="Lifestyle" />
-      </div>
-    </div>
-
-    <div class="c-dots" id="cDots" aria-label="Indicadores"></div>
-  </section>
+           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/Logos/1.png" class="d-block w-100" alt="foto1" id="foto_1">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/Logos/2.png" class="d-block w-100" alt="foto2" id="foto_2">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/Logos/3.png" class="d-block w-100" alt="foto3" id="foto_3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
   <!-- ===== NEW IN – OUT NOW ===== -->
    <section id="newin" class="section section-light">
@@ -93,10 +99,10 @@
   <section id="collections" class="section">
     <div class="container">
       <div class="mosaic">
-        <a class="tile" href="/coleccion/1"><img src="assets/fotos/IMG_3798.JPEG" alt="Colección 1"></a>
-        <a class="tile" href="/coleccion/2"><img src="assets/fotos/Copia de IMG_2349.jpg" alt="Colección 2"></a>
-        <a class="tile" href="/coleccion/3"><img src="assets/fotos/IMG_3887.jpg" alt="Colección 3"></a>
-        <a class="tile" href="/coleccion/4"><img src="assets/fotos/IMG_0880.JPG" alt="Colección 4"></a>
+        <a class="tile" href="productos.html"><img src="assets/fotos/IMG_3798.JPEG" alt="Colección 1"></a>
+        <a class="tile" href="productos.html"><img src="assets/fotos/Copia de IMG_2349.jpg" alt="Colección 2"></a>
+        <a class="tile" href="productos.html"><img src="assets/fotos/IMG_3887.jpg" alt="Colección 3"></a>
+        <a class="tile" href="productos.html"><img src="assets/fotos/IMG_0880.JPG" alt="Colección 4"></a>
       </div>
     </div>
   </section>
@@ -118,26 +124,6 @@
           <span class="badge">40% OFF</span>
           <img src="assets/fotos/IMG_1919.jpg" alt="Sale 3">
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SHOP THE LOOK (CARRUSEL HORIZONTAL) ===== -->
-  <section id="looks" class="section">
-    <div class="container looks">
-      <h2 class="display">SHOP THE LOOK</h2>
-
-      <div class="hscroll" id="lookTrack">
-        <button class="hs-arrow hs-prev" aria-label="Anterior">‹</button>
-        <div class="hwrap">
-          <img src="./assets/look-1.jpg" alt="Look 1" class="look">
-          <img src="./assets/look-2.jpg" alt="Look 2" class="look">
-          <img src="./assets/look-3.jpg" alt="Look 3" class="look">
-          <img src="./assets/look-4.jpg" alt="Look 4" class="look">
-          <img src="./assets/look-5.jpg" alt="Look 5" class="look">
-          <img src="./assets/look-6.jpg" alt="Look 6" class="look">
-        </div>
-        <button class="hs-arrow hs-next" aria-label="Siguiente">›</button>
       </div>
     </div>
   </section>
@@ -283,14 +269,39 @@
       <div class="footer-brand">
         <img src="assets/Logos/LogoNegroRels.png" alt="Rels">
         <ul class="social">
-          <li><a aria-label="Instagram" href="https://instagram.com/" target="_blank" rel="noopener">IG</a></li>
-          <li><a aria-label="WhatsApp" href="#" target="_blank" rel="noopener">WA</a></li>
-          <li><a aria-label="TikTok" href="#" target="_blank" rel="noopener">TT</a></li>
-          <li><a aria-label="YouTube" href="#" target="_blank" rel="noopener">YT</a></li>
+          <li><a aria-label="Instagram" href="https://www.instagram.com/rels.ar/" target="_blank" rel="noopener">IG</a></li>
+          <li><a aria-label="WhatsApp" href="https://wa.me/5491131142614" target="_blank" rel="noopener">WA</a></li>
+          <li><a aria-label="TikTok" href="https://www.tiktok.com/@rels.ar" target="_blank" rel="noopener">TT</a></li>
         </ul>
         <p>© <span id="year"></span> Rels — Surfing Identity</p>
       </div>
     </div>
+    <!-- Botón carrito -->
+<button id="cartBtn" class="cart-btn" aria-label="Abrir carrito">
+  🛒 <span id="cartBadge">0</span>
+</button>
+
+<!-- Panel del carrito -->
+<div id="cartPanel" class="cart-panel" hidden>
+  <div class="cart-head">
+    <h3>Tu carrito</h3>
+    <button id="cartClose" class="cart-x" aria-label="Cerrar">×</button>
+  </div>
+
+  <div id="cartItems" class="cart-items"></div>
+
+  <div class="cart-foot">
+    <div class="cart-total">
+      Total: <strong id="cartTotal">$0</strong>
+    </div>
+    <div class="cart-actions">
+      <button id="cartCheckout" class="btn-buy">Comprar</button>
+      <button id="cartClear" class="btn-clear">Vaciar</button>
+    </div>
+  </div>
+</div>
+<div id="cartBackdrop" class="cart-backdrop" hidden></div>
+
   </footer>
 </body>
 </html>
