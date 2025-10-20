@@ -1,3 +1,36 @@
+/* ===== NAV MOBILE & SEARCH ===== */
+const navToggle = document.getElementById('navToggle');
+const navLeft   = document.querySelector('.nav-left');
+const backdrop  = document.getElementById('navBackdrop');
+
+function closeMenu(){
+  navLeft?.classList.remove('open');
+  document.body.classList.remove('nav-open');
+  if (backdrop) backdrop.hidden = true;
+}
+
+navToggle?.addEventListener('click', () => {
+  const willOpen = !navLeft?.classList.contains('open');
+  if (willOpen){
+    navLeft?.classList.add('open');
+    document.body.classList.add('nav-open');
+    if (backdrop) backdrop.hidden = false;
+  } else {
+    closeMenu();
+  }
+});
+
+backdrop?.addEventListener('click', closeMenu);
+
+navLeft?.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (a) closeMenu();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
 // 🔹 Lista de productos 
 const products = [
   {
@@ -80,7 +113,6 @@ function render() {
   $grid.innerHTML = products.map(p => cardHTML(p)).join("");
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Soporte para dispositivos táctiles
   const cards = document.querySelectorAll(".product-card");
   cards.forEach(card => {
     const front = card.querySelector("img.front");
@@ -94,25 +126,47 @@ function render() {
     }, { passive:true });
   });
 }
+render();
+
+
+function slugify(str){
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
 
 function cardHTML(p) {
+  const id = slugify(p.name);
   return `
-  <article class="product-card">
-    <!-- opcional: <span class="badge">NEW</span> -->
-    <div class="thumb">
-      <img class="front" src="${p.imgFront}" alt="${p.name}" loading="lazy">
-      <img class="back"  src="${p.imgBack}"  alt="${p.name} (vista 2)" loading="lazy">
-      <div class="hover-ui">
-        <a class="btn primary" href="${p.urlBuy}" aria-label="Comprar ${p.name}">COMPRAR</a>
+    <article class="product-card"
+            data-id="${id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-sku="${id}">
+      <div class="thumb">
+        <img class="front" src="${p.imgFront}" alt="${p.name}" loading="lazy">
+        <img class="back"  src="${p.imgBack}"  alt="${p.name} (vista 2)" loading="lazy">
+        <div class="hover-ui">
+          <button
+            type="button"
+            class="btn primary add-to-cart"
+            data-id="${id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-sku="${id}"
+            aria-label="Agregar ${p.name} al carrito"
+          >AGREGAR</button>
+        </div>
+        <div class="sep" aria-hidden="true"></div>
       </div>
-      <div class="sep" aria-hidden="true"></div>
-    </div>
-    <div class="info">
-      <h3 class="name">${p.name}</h3>
-      <div class="price">${currencyFmt.format(p.price)}</div>
-    </div>
-  </article>`;
+      <div class="info">
+        <h3 class="name">${p.name}</h3>
+        <div class="price">${currencyFmt.format(p.price)}</div>
+      </div>
+    </article>`;
 }
+
+
 
 /* ====== CARRITO ====== */
 (() => {
@@ -148,22 +202,76 @@ function cardHTML(p) {
       itemsBox.innerHTML = `<p style="color:#666">Tu carrito está vacío.</p>`;
     } else {
       itemsBox.innerHTML = cart.map((it, idx) => `
-        <div class="cart-item" data-idx="${idx}">
-          <h4>${it.name}</h4>
-          <div class="cart-meta">${fmt.format(it.price)} · ${it.sku || ''}</div>
-          <div class="cart-qty">
-            <button class="ci-btn ci-minus" data-idx="${idx}" aria-label="Menos">−</button>
-            <span>${it.qty}</span>
-            <button class="ci-btn ci-plus"  data-idx="${idx}" aria-label="Más">+</button>
-            <button class="ci-del" data-idx="${idx}" aria-label="Quitar">Quitar</button>
+        <div class="cart-item">
+          <div class="ci-left">
+            <div class="ci-thumb" aria-hidden="true" style="width:56px;height:56px;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+              ${it.img ? `<img src="${it.img}" alt="${it.name}" style="max-width:100%;max-height:100%;">` : ''}
+            </div>
+
+            <div class="ci-info" style="margin-left:12px;">
+              <h4 class="ci-name" style="margin:0 0 4px 0;font-weight:600;">${it.name}</h4>
+              <div class="cart-meta" style="color:#555;margin-bottom:8px;">${fmt.format(it.price)} c/u</div>
+
+              <div class="cart-qty">
+                <button class="ci-btn ci-minus" data-idx="${idx}" aria-label="Menos">−</button>
+                <span class="ci-count">${it.qty}</span>
+                <button class="ci-btn ci-plus"  data-idx="${idx}" aria-label="Más">+</button>
+                <button class="ci-del" data-idx="${idx}" aria-label="Quitar">🗑️</button>
+              </div>
+            </div>
           </div>
-          <div style="text-align:right;font-weight:700;">${fmt.format(it.qty * it.price)}</div>
+
+          <div class="ci-sub" style="margin-left:auto;text-align:right;font-weight:700;">
+            ${fmt.format(it.qty * it.price)}
+          </div>
         </div>
       `).join('');
+
     }
-    totalEl.textContent = fmt.format(moneyTotal());
-    updateBadge();
+    const total = moneyTotal(); 
+    const totalBox = document.querySelector('.cart-total');
+    if (totalBox) totalBox.style.display = 'flex'; 
+    if (totalEl) {
+    try { totalEl.textContent = fmt.format(total); }
+    catch { totalEl.textContent = total.toLocaleString('es-AR', {style:'currency', currency:'ARS'}); }
+  }
+  updateBadge();
   };
+
+  // ——— SINCRONIZAR UI DE CARDS CON EL CARRITO ———
+const syncProductCards = () => {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    const pid   = card.dataset.id;
+    const name  = card.dataset.name || 'Producto';
+    const price = parseFloat(card.dataset.price || '0');
+    const btnArea = card.querySelector('.hover-ui');
+    if (!pid || !btnArea) return;
+
+    const found = cart.find(i => i.id === pid);
+
+    if (found) {
+      btnArea.innerHTML = `
+        <div class="card-qty" data-id="${pid}">
+          <button class="cq-btn cq-minus" aria-label="Menos">−</button>
+          <span class="cq-num">${found.qty}</span>
+          <button class="cq-btn cq-plus" aria-label="Más">+</button>
+        </div>`;
+    } else {
+      btnArea.innerHTML = `
+        <button
+          type="button"
+          class="btn primary add-to-cart"
+          data-id="${pid}"
+          data-name="${name}"
+          data-price="${price}"
+          data-sku="${pid}">
+          AGREGAR
+        </button>`;
+    }
+  });
+};
+
 
   const open = () => {
     panel?.classList.add('open');
@@ -175,6 +283,8 @@ function cardHTML(p) {
     panel?.setAttribute('hidden','');
     backdrop?.setAttribute('hidden','');
   };
+
+
 
   // Listeners UI
   btnOpen?.addEventListener('click', open);
@@ -208,7 +318,6 @@ function cardHTML(p) {
     save(); render();
   });
 
-  // Capturar cualquier botón "Agregar" del sitio
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.add-to-cart');
     if (!btn) return;
@@ -224,11 +333,42 @@ function cardHTML(p) {
     if (found) found.qty++;
     else cart.push({ id, name, price, qty: 1, sku });
 
-    save(); render(); open();
-  });
+    save(); render(); open();syncProductCards(); 
 
-  // inicializar
+  });
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.cq-btn');
+  if (!btn) return;
+
+  const wrap = btn.closest('.card-qty');
+  const pid  = wrap?.dataset.id;
+  if (!pid) return;
+
+  let it = cart.find(i => i.id === pid);
+  if (!it) {
+    const card  = btn.closest('.product-card');
+    const name  = card?.dataset.name || 'Producto';
+    const price = parseFloat(card?.dataset.price || '0');
+    it = { id: pid, name, price, qty: 0, sku: pid };
+    cart.push(it);
+  }
+
+  if (btn.classList.contains('cq-plus'))   it.qty++;
+  if (btn.classList.contains('cq-minus')) {
+    it.qty = Math.max(0, it.qty - 1);
+    if (it.qty === 0) cart = cart.filter(x => x.id !== pid);
+  }
+
+  save();
   render();
+  syncProductCards();
+  open(); 
+
+});
+  render();
+  syncProductCards();
+
+
 })();
 
 
@@ -251,4 +391,4 @@ function setMsg(text, ok){
   msg.textContent = text;
   msg.style.color = ok ? '#7CFFB2' : '#FF8B8B';
 }
-render()
+render();

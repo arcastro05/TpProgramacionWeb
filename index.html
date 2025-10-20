@@ -24,7 +24,6 @@
     <div id="navBackdrop" class="nav-backdrop" hidden></div>
     <div class="container nav">
       <nav class="nav-left">
-        <a href="#newin">New In</a>
         <a href="productos.html">Productos</a>
         <a href="#collections">Colecciones</a>
         <a href="#nosotros">Nosotros</a>
@@ -36,30 +35,11 @@
 
       <nav class="nav-right">
         <a href="#register">Registrarse</a>
-        <button class="icon-btn" aria-label="Buscar" id="openSearch">
-          <!-- search icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.32 12.9l4.39 4.4-1.42 1.4-4.39-4.38A8 8 0 1 1 10 2m0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4Z"/></svg>
-        </button>
-        <button class="icon-btn" aria-label="Carrito">
-          <!-- cart icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 18a2 2 0 1 0 .001 3.999A2 2 0 0 0 7 18Zm10 0a2 2 0 1 0 .001 3.999A2 2 0 0 0 17 18ZM6.2 4l.8 2H21l-2 8H7L4.6 4H2V2h4.2ZM8 14h9.2l1.5-6H7.6l.9 3h8v2H8.3L8 14Z"/></svg>
-        </button>
       </nav>
 
       <button class="nav-toggle" id="navToggle" aria-label="Menú">
         <span></span><span></span><span></span>
       </button>
-    </div>
-
-    <!-- buscador modal simple -->
-    <div class="searchbar" id="searchbar" hidden>
-      <div class="container">
-        <form id="searchForm" role="search">
-          <input type="search" placeholder="Buscar productos..." aria-label="Buscar" />
-          <button class="btn">Buscar</button>
-          <button class="btn btn-ghost" type="button" id="closeSearch">Cerrar</button>
-        </form>
-      </div>
     </div>
   </header>
 
@@ -85,14 +65,6 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
-  <!-- ===== NEW IN – OUT NOW ===== -->
-   <section id="newin" class="section section-light">
-  <div class="container">
-    <h2 class="display">New In – Out Now</h2>
-    <div id="newInGrid" class="grid grid-4"></div>
-  </div>
-</section>
 
 
   <!-- ===== COLECCIONES (MOSAICO CON LINKS) ===== -->
@@ -211,17 +183,14 @@
     <div class="container">
       <div class="reviews">
         <article class="review">
-          <div class="avatar"></div>
           <div class="stars" aria-label="5 estrellas">★★★★★</div>
           <p>“Calidad tremenda, llegó rapidísimo. Recomendado.”</p>
         </article>
         <article class="review">
-          <div class="avatar"></div>
           <div class="stars" aria-label="5 estrellas">★★★★★</div>
           <p>“La tela es increíble y los talles van perfectos.”</p>
         </article>
         <article class="review">
-          <div class="avatar"></div>
           <div class="stars" aria-label="5 estrellas">★★★★★</div>
           <p>“Mi marca favorita del invierno 2025.”</p>
         </article>
@@ -276,10 +245,10 @@
         <p>© <span id="year"></span> Rels — Surfing Identity</p>
       </div>
     </div>
-    <!-- Botón carrito -->
-<button id="cartBtn" class="cart-btn" aria-label="Abrir carrito">
-  🛒 <span id="cartBadge">0</span>
-</button>
+            <!-- Botón carrito -->
+    <button id="cartBtn" class="cart-btn cart-btn--header" aria-label="Abrir carrito">🛒
+      <span id="cartBadge">0</span>
+    </button>
 
 <!-- Panel del carrito -->
 <div id="cartPanel" class="cart-panel" hidden>
@@ -301,6 +270,7 @@
   </div>
 </div>
 <div id="cartBackdrop" class="cart-backdrop" hidden></div>
+
 
   </footer>
 </body>

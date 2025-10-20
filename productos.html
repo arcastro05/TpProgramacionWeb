@@ -15,28 +15,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>   
 
 </head>
-<body>
 
+<body>
   <header class="site-header">
-    <div class="container head">
-      <a class="brand" href="index.html" aria-label="Inicio Rels">
+    <div id="navBackdrop" class="nav-backdrop" hidden></div>
+    <div class="container nav">
+      <nav class="nav-left">
+        <a href="index.html">Inicio</a>
+      </nav>
+
+      <a class="brand" href="#" aria-label="Inicio">
         <img src="assets/Logos/LogoBlanco3D.gif" alt="Rels" />
       </a>
-      <h1 class="title">Productos</h1>
+      <nav class="nav-right">
+        <a href="#register">Registrarse</a>
+      </nav>
+          <!-- buscador modal simple -->
+    <div class="searchbar" id="searchbar" hidden>
+      <div class="container">
+        <form id="searchForm" role="search">
+          <input type="search" placeholder="Buscar productos..." aria-label="Buscar" />
+          <button class="btn">Buscar</button>
+          <button class="btn btn-ghost" type="button" id="closeSearch">Cerrar</button>
+        </form>
+      </div>
     </div>
-    <!-- Botón carrito en el header -->
-<button id="cartBtn" class="cart-btn cart-btn--header" aria-label="Abrir carrito">
-  <!-- ícono carrito (SVG) -->
-  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-    <path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.44A1.99 1.99 0 0 0 8 18h10v-2H9.42c-.14 0-.25-.11-.25-.25l.03-.12L10.1 14h6.45a2 2 0 0 0 1.8-1.1l3.58-6.49A1 1 0 0 0 21 5H7zm0 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 .001 4.001A2 2 0 0 0 17 20z" fill="currentColor"/>
-  </svg>
-  <span id="cartBadge">0</span>
-</button>
-
   </header>
-
   <main class="container">
-    <!-- Grid donde el JS inyecta las cards -->
     <section id="productGrid" class="grid"></section>
   </main>
 
@@ -63,9 +68,9 @@
     </div>
     <div class="foot-note">© <span id="year"></span> Rels · Buenos Aires</div>
         <!-- Botón carrito -->
-<button id="cartBtn" class="cart-btn" aria-label="Abrir carrito">
-  🛒 <span id="cartBadge">0</span>
-</button>
+    <button id="cartBtn" class="cart-btn cart-btn--header" aria-label="Abrir carrito">🛒
+      <span id="cartBadge">0</span>
+    </button>
 
 <!-- Panel del carrito -->
 <div id="cartPanel" class="cart-panel" hidden>

@@ -19,7 +19,6 @@ body{
 }
 img{ max-width:100%; display:block }
 
-/* util */
 .container{
   width:min(100% - 2rem, var(--container));
   margin-inline:auto;
@@ -264,7 +263,6 @@ img{ max-width:100%; display:block }
 }
 .stars{ color:#f7b500; letter-spacing:.2rem; font-size:1.25rem }
 
-/* services row */
 .service-bar{
   display:grid; gap:1rem; grid-template-columns: 1fr; border-top:1px solid #00000014;
   padding-top:1rem;
@@ -313,7 +311,6 @@ img{ max-width:100%; display:block }
     --header-img: url("assets/fotos/ultima_correct.png");
   }
 
-  /* Overlay centrado */
   #popup-rels{
     font-family:'Oswald',sans-serif;
     position:fixed; inset:0; z-index:999999;
@@ -338,7 +335,6 @@ img{ max-width:100%; display:block }
   @keyframes relsSlideUp{ to{ transform: translateY(0); } }
 
   /*CARRITO*/
-  /* ==== CART UI ==== */
 .cart-btn{
   position: fixed; right: 16px; bottom: 16px;
   background:#111; color:#fff; border:0; border-radius:999px;

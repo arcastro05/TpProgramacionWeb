@@ -1,4 +1,3 @@
-console.log("hola rels");
 /* ===== NAV MOBILE & SEARCH ===== */
 const navToggle = document.getElementById('navToggle');
 const navLeft   = document.querySelector('.nav-left');
@@ -21,16 +20,13 @@ navToggle?.addEventListener('click', () => {
   }
 });
 
-// Cerrar tocando el backdrop
 backdrop?.addEventListener('click', closeMenu);
 
-// Cerrar al tocar un link del menú
 navLeft?.addEventListener('click', (e) => {
   const a = e.target.closest('a');
   if (a) closeMenu();
 });
 
-// Cerrar con ESC
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeMenu();
 });
@@ -58,7 +54,6 @@ function setMsg(text, ok){
 (() => {
   const fmt = new Intl.NumberFormat('es-AR', { style:'currency', currency:'ARS' });
 
-  // Estado
   let cart = [];
   try {
     cart = JSON.parse(localStorage.getItem('rels_cart') || '[]');
@@ -66,6 +61,7 @@ function setMsg(text, ok){
 
   // UI refs
   const btnOpen   = document.getElementById('cartBtn');
+  const openers   = Array.from(document.querySelectorAll('[data-open-cart]'));
   const btnClose  = document.getElementById('cartClose');
   const panel     = document.getElementById('cartPanel');
   const backdrop  = document.getElementById('cartBackdrop');
@@ -87,22 +83,41 @@ function setMsg(text, ok){
     if (!cart.length) {
       itemsBox.innerHTML = `<p style="color:#666">Tu carrito está vacío.</p>`;
     } else {
-      itemsBox.innerHTML = cart.map((it, idx) => `
-        <div class="cart-item" data-idx="${idx}">
-          <h4>${it.name}</h4>
-          <div class="cart-meta">${fmt.format(it.price)} · ${it.sku || ''}</div>
-          <div class="cart-qty">
-            <button class="ci-btn ci-minus" data-idx="${idx}" aria-label="Menos">−</button>
-            <span>${it.qty}</span>
-            <button class="ci-btn ci-plus"  data-idx="${idx}" aria-label="Más">+</button>
-            <button class="ci-del" data-idx="${idx}" aria-label="Quitar">Quitar</button>
-          </div>
-          <div style="text-align:right;font-weight:700;">${fmt.format(it.qty * it.price)}</div>
-        </div>
-      `).join('');
-    }
-    totalEl.textContent = fmt.format(moneyTotal());
-    updateBadge();
+            itemsBox.innerHTML = cart.map((it, idx) => `
+              <div class="cart-item">
+                <div class="ci-left">
+                  <div class="ci-thumb" aria-hidden="true" style="width:56px;height:56px;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+                    ${it.img ? `<img src="${it.img}" alt="${it.name}" style="max-width:100%;max-height:100%;">` : ''}
+                  </div>
+
+                  <div class="ci-info" style="margin-left:12px;">
+                    <h4 class="ci-name" style="margin:0 0 4px 0;font-weight:600;">${it.name}</h4>
+                    <div class="cart-meta" style="color:#555;margin-bottom:8px;">${fmt.format(it.price)} c/u</div>
+
+                    <div class="cart-qty">
+                      <button class="ci-btn ci-minus" data-idx="${idx}" aria-label="Menos">−</button>
+                      <span class="ci-count">${it.qty}</span>
+                      <button class="ci-btn ci-plus"  data-idx="${idx}" aria-label="Más">+</button>
+                      <button class="ci-del" data-idx="${idx}" aria-label="Quitar">🗑️</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ci-sub" style="margin-left:auto;text-align:right;font-weight:700;">
+                  ${fmt.format(it.qty * it.price)}
+                </div>
+              </div>
+            `).join('');
+
+          }
+          const total = moneyTotal(); 
+          const totalBox = document.querySelector('.cart-total');
+          if (totalBox) totalBox.style.display = 'flex'; 
+          if (totalEl) {
+          try { totalEl.textContent = fmt.format(total); }
+          catch { totalEl.textContent = total.toLocaleString('es-AR', {style:'currency', currency:'ARS'}); }
+        }
+        updateBadge();
   };
 
   const open = () => {
@@ -118,6 +133,7 @@ function setMsg(text, ok){
 
   // Listeners UI
   btnOpen?.addEventListener('click', open);
+  openers.forEach(el => el.addEventListener('click', open));
   btnClose?.addEventListener('click', close);
   backdrop?.addEventListener('click', close);
 
@@ -167,6 +183,5 @@ function setMsg(text, ok){
     save(); render(); open();
   });
 
-  // inicializar
   render();
 })();
