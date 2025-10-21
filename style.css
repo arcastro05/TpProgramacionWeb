@@ -115,21 +115,6 @@ img{ max-width:100%; display:block }
 .tile{ display:block; border-radius:10px; overflow:hidden; }
 .tile img{ aspect-ratio: 1.6/1; object-fit:cover; }
 
-/* ===== SALE ===== */
-.grid-3{ display:grid; gap:1.2rem; grid-template-columns: 1fr; }
-@media (min-width: 900px){ .grid-3{ grid-template-columns: repeat(3,1fr); } }
-
-.sale-card{
-  position:relative; background:#fff; border-radius:24px; overflow:hidden; box-shadow: var(--shadow);
-  padding:.6rem;
-}
-.sale-card img{ border-radius:18px; }
-.badge{
-  position:absolute; right:16px; top:14px;
-  background:#000; color:#fff; padding:.25rem .5rem; border-radius:10px;
-  font-weight:800; font-size:.85rem;
-}
-
 /* ===== VIDEO ===== */
 .video-wrap{
   aspect-ratio: 16/9; background:#000; border-radius:16px; overflow:hidden; box-shadow: var(--shadow);
@@ -385,67 +370,8 @@ img{ max-width:100%; display:block }
   color: #111; 
 }
 
-  /* Header */
-  .relsh{
-    height: 120px;
-    background: var(--header-img) center/cover no-repeat;
-    position: relative;
-    border-top-left-radius: var(--radius);
-    border-top-right-radius: var(--radius);
-  }
-  .relsh::after{
-    content:""; position:absolute; inset:0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 25%, rgba(0,0,0,.55) 100%);
-  }
-  .cerrar{
-    position:absolute; top:10px; right:12px; z-index:1;
-    font-size:22px; color:#fff; cursor:pointer; line-height:1;
-    text-shadow:0 1px 4px rgba(0,0,0,.6);
-  }
 
-  /* Body */
-  .relsb{ padding: 18px 22px 22px; }
-  #popup-rels h2{ margin:0 0 6px; font-size:26px; text-align:center; color:#111; }
-  #popup-rels p{  margin:0 0 14px; font-size:14px; text-align:center; color:#333; }
 
-  .formulario{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-  .formulario .full{ grid-column: 1 / -1; }
-  .campo{ display:flex; flex-direction:column; gap:6px; min-width:0; }
-  .formulario label{ font-size:13px; font-weight:700; color:#111; margin:0; }
-
-  .formulario input[type="text"],
-  .formulario input[type="email"],
-  .formulario input[type="date"],
-  .formulario select{
-    width:100%;
-    height: 44px;
-    padding: 10px 14px;
-    border-radius: 9999px;
-    border:0; background:#fff; color:#111; font-size:14px;
-    outline:none; box-shadow: inset 0 0 0 1px #cfcfcf;
-    transition: box-shadow .15s ease;
-  }
-  .formulario input:focus, .formulario select:focus{ box-shadow: inset 0 0 0 2px #000; }
-
-  .checkline{ display:flex; align-items:center; gap:8px; font-size:13px; color:#111; line-height:1.3; }
-  .formulario input[type="checkbox"]{ width:18px; height:18px; accent-color:#000; margin:0; }
-
-  .formulario input[type="submit"]{
-    background:#000; color:#fff; border:0; font-weight:700; padding:12px 18px;
-    border-radius:9999px; font-size:18px; width:100%; cursor:pointer;
-    box-shadow:0 6px 0 #1a1a1a, 0 8px 18px rgba(0,0,0,.25);
-    transition: opacity .2s, transform .05s, box-shadow .2s;
-    grid-column: 1 / -1; margin-top: 4px;
-  }
-  .formulario input[type="submit"]:hover{ opacity:.96; }
-  .formulario input[type="submit"]:active{ transform: translateY(2px); box-shadow:0 4px 0 #1a1a1a,0 6px 14px rgba(0,0,0,.25); }
-
-  #mensaje-exito{
-    position:fixed; top:20px; left:50%; transform:translateX(-50%);
-    background:#111; color:#fff; padding:10px 18px; border-radius:10px;
-    font-weight:700; font-family:'Oswald',sans-serif; display:none; z-index:1000000;
-    box-shadow:0 6px 20px rgba(0,0,0,.25); font-size:14px;
-  }
 
   /* ===== MOBILE TUNING ===== */
   @media (max-width: 560px){

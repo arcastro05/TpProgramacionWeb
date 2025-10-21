@@ -38,71 +38,66 @@ const products = [
     price: 60000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3639.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3638.PNG",
-    urlBuy: "#"
   },
   {
     name: "Bermuda Bay",
     price: 60000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3635.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3634.PNG",
-    urlBuy: "#"
   },
   {
     name: "Bermuda Tide",
     price: 60000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3637.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3636.PNG",
-    urlBuy: "#"
   },
   {
     name: "Remera Set",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3619.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3620.PNG",
-    urlBuy: "#"
   },
     {
     name: "Remera Sunset Palm",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3613.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3614.PNG",
-    urlBuy: "#"
   },
     {
     name: "Remera Ocean Palm",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3621.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3616.PNG",
-    urlBuy: "#"
   },
     {
     name: "Remera Dune",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Almost Home/IMG_3617.PNG",
     imgBack: "assets/PrendasDigitales/Almost Home/IMG_3618.PNG",
-    urlBuy: "#"
   },
     {
     name: "Remera Zion",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Lost in the city/IMG_3292.PNG",
     imgBack: "assets/PrendasDigitales/Lost in the city/IMG_3291.PNG",
-    urlBuy: "#",
-    urlView: "#"
   },
     {
     name: "Remera Nalu",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Lost in the city/IMG_3286.PNG",
     imgBack: "assets/PrendasDigitales/Lost in the city/IMG_3287.PNG",
-    urlBuy: "#"
   },
     {
     name: "Remera Kaya",
     price: 35000,
     imgFront: "assets/PrendasDigitales/Lost in the city/IMG_3290.PNG",
     imgBack: "assets/PrendasDigitales/Lost in the city/IMG_3291.PNG",
-    urlBuy: "#"
+  },
+    {
+    name: "Boardshort Inti",
+    price: 55000,
+    imgFront: "assets/PrendasDigitales/Modern Nature/IMG_3468.PNG",
+    imgBack: "assets/PrendasDigitales/Modern Nature/IMG_3469.PNG",
   },
 ];
 
