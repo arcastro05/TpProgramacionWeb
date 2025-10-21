@@ -142,7 +142,8 @@ function cardHTML(p) {
             data-id="${id}"
             data-name="${p.name}"
             data-price="${p.price}"
-            data-sku="${id}">
+            data-sku="${id}"
+            data-img="${p.imgFront}">
       <div class="thumb">
         <img class="front" src="${p.imgFront}" alt="${p.name}" loading="lazy">
         <img class="back"  src="${p.imgBack}"  alt="${p.name} (vista 2)" loading="lazy">
@@ -154,6 +155,7 @@ function cardHTML(p) {
             data-name="${p.name}"
             data-price="${p.price}"
             data-sku="${id}"
+            data-img="${p.imgFront}"
             aria-label="Agregar ${p.name} al carrito"
           >AGREGAR</button>
         </div>
@@ -172,11 +174,21 @@ function cardHTML(p) {
 (() => {
   const fmt = new Intl.NumberFormat('es-AR', { style:'currency', currency:'ARS' });
 
-  // Estado
   let cart = [];
   try {
     cart = JSON.parse(localStorage.getItem('rels_cart') || '[]');
   } catch (_) { cart = []; }
+  
+if (Array.isArray(cart)) {
+  let touched = false;
+  cart = cart.map(it => {
+    if (!it.name) touched = true;
+    return { ...it, name: it?.name || it?.sku || 'Producto' };
+  });
+  if (touched) localStorage.setItem('rels_cart', JSON.stringify(cart));
+}
+
+
 
   // UI refs
   const btnOpen   = document.getElementById('cartBtn');
@@ -326,12 +338,17 @@ const syncProductCards = () => {
     const name  = btn.dataset.name  || 'Producto';
     const price = parseFloat(btn.dataset.price || '0');
     const sku   = btn.dataset.sku   || id;
+    const card  = btn.closest('.product-card');
+    const img   = btn.dataset.img
+    || card?.dataset.img
+    || card?.querySelector('.front')?.src
+    || '';
 
     if (!price) { alert('Precio inválido'); return; }
 
     const found = cart.find(p => p.id === id);
     if (found) found.qty++;
-    else cart.push({ id, name, price, qty: 1, sku });
+    else cart.push({ id, name, price, qty: 1, sku, img });
 
     save(); render(); open();syncProductCards(); 
 
@@ -349,7 +366,10 @@ document.addEventListener('click', (e) => {
     const card  = btn.closest('.product-card');
     const name  = card?.dataset.name || 'Producto';
     const price = parseFloat(card?.dataset.price || '0');
-    it = { id: pid, name, price, qty: 0, sku: pid };
+    const img   = card?.dataset.img
+    || card?.querySelector('.front')?.src
+    || '';
+    it = { id: pid, name, price, qty: 0, sku: pid, img };
     cart.push(it);
   }
 

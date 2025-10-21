@@ -38,7 +38,7 @@ const msg = document.getElementById('formMsg');
 form?.addEventListener('submit', (e) => {
   e.preventDefault();
   const email = (document.getElementById('email').value || '').trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+  if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){
     setMsg('Ingresá un email válido', false); return;
   }
 
@@ -50,18 +50,25 @@ function setMsg(text, ok){
   msg.style.color = ok ? '#7CFFB2' : '#FF8B8B';
 }
 
+
 /* ====== CARRITO ====== */
 (() => {
   const fmt = new Intl.NumberFormat('es-AR', { style:'currency', currency:'ARS' });
 
   let cart = [];
-  try {
-    cart = JSON.parse(localStorage.getItem('rels_cart') || '[]');
-  } catch (_) { cart = []; }
+  const loadCart = () => {
+    try {
+      cart = JSON.parse(localStorage.getItem('rels_cart') || '[]');
+      if (!Array.isArray(cart)) cart = [];
+    } catch { cart = []; }
+  };
+
+  const save = () => localStorage.setItem('rels_cart', JSON.stringify(cart));
+  const qtyTotal = () => cart.reduce((s,i)=> s + i.qty, 0);
+  const moneyTotal = () => cart.reduce((s,i)=> s + i.qty * i.price, 0);
 
   // UI refs
   const btnOpen   = document.getElementById('cartBtn');
-  const openers   = Array.from(document.querySelectorAll('[data-open-cart]'));
   const btnClose  = document.getElementById('cartClose');
   const panel     = document.getElementById('cartPanel');
   const backdrop  = document.getElementById('cartBackdrop');
@@ -71,69 +78,71 @@ function setMsg(text, ok){
   const btnBuy    = document.getElementById('cartCheckout');
   const btnClear  = document.getElementById('cartClear');
 
-  const save = () => localStorage.setItem('rels_cart', JSON.stringify(cart));
-
-  const qtyTotal = () => cart.reduce((s,i)=> s + i.qty, 0);
-  const moneyTotal = () => cart.reduce((s,i)=> s + i.qty * i.price, 0);
-
   const updateBadge = () => { if (badgeEl) badgeEl.textContent = qtyTotal(); };
 
   const render = () => {
+    loadCart();
     if (!itemsBox) return;
+
     if (!cart.length) {
       itemsBox.innerHTML = `<p style="color:#666">Tu carrito está vacío.</p>`;
     } else {
-            itemsBox.innerHTML = cart.map((it, idx) => `
-              <div class="cart-item">
-                <div class="ci-left">
-                  <div class="ci-thumb" aria-hidden="true" style="width:56px;height:56px;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
-                    ${it.img ? `<img src="${it.img}" alt="${it.name}" style="max-width:100%;max-height:100%;">` : ''}
-                  </div>
+      itemsBox.innerHTML = cart.map((it, idx) => `
+        <div class="cart-item">
+          <div class="ci-left">
+            <div class="ci-thumb" aria-hidden="true" style="width:56px;height:56px;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+              ${it.img ? `<img src="${it.img}" alt="${it.name}" style="max-width:100%;max-height:100%;">` : ''}
+            </div>
 
-                  <div class="ci-info" style="margin-left:12px;">
-                    <h4 class="ci-name" style="margin:0 0 4px 0;font-weight:600;">${it.name}</h4>
-                    <div class="cart-meta" style="color:#555;margin-bottom:8px;">${fmt.format(it.price)} c/u</div>
+            <div class="ci-info" style="margin-left:12px;">
+              <h4 class="ci-name" style="margin:0 0 4px 0;font-weight:600;">${it.name}</h4>
+              <div class="cart-meta" style="color:#555;margin-bottom:8px;">${fmt.format(it.price)} c/u</div>
 
-                    <div class="cart-qty">
-                      <button class="ci-btn ci-minus" data-idx="${idx}" aria-label="Menos">−</button>
-                      <span class="ci-count">${it.qty}</span>
-                      <button class="ci-btn ci-plus"  data-idx="${idx}" aria-label="Más">+</button>
-                      <button class="ci-del" data-idx="${idx}" aria-label="Quitar">🗑️</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="ci-sub" style="margin-left:auto;text-align:right;font-weight:700;">
-                  ${fmt.format(it.qty * it.price)}
-                </div>
+              <div class="cart-qty">
+                <button class="ci-btn ci-minus" data-idx="${idx}" aria-label="Menos">−</button>
+                <span class="ci-count">${it.qty}</span>
+                <button class="ci-btn ci-plus"  data-idx="${idx}" aria-label="Más">+</button>
+                <button class="ci-del" data-idx="${idx}" aria-label="Quitar">🗑️</button>
               </div>
-            `).join('');
+            </div>
+          </div>
 
-          }
-          const total = moneyTotal(); 
-          const totalBox = document.querySelector('.cart-total');
-          if (totalBox) totalBox.style.display = 'flex'; 
-          if (totalEl) {
-          try { totalEl.textContent = fmt.format(total); }
-          catch { totalEl.textContent = total.toLocaleString('es-AR', {style:'currency', currency:'ARS'}); }
-        }
-        updateBadge();
+          <div class="ci-sub" style="margin-left:auto;text-align:right;font-weight:700;">
+            ${fmt.format(it.qty * it.price)}
+          </div>
+        </div>
+      `).join('');
+    }
+    const total = moneyTotal();
+    const totalBox = document.querySelector('.cart-total');
+    if (totalBox) totalBox.style.display = 'flex';
+
+    if (totalEl) {
+      try {
+        totalEl.textContent = fmt.format(total);
+      } catch {
+        totalEl.textContent = total.toLocaleString('es-AR', { style:'currency', currency:'ARS' });
+      }
+    }
+    updateBadge();
+
   };
 
   const open = () => {
+    render();
     panel?.classList.add('open');
     panel?.removeAttribute('hidden');
     backdrop?.removeAttribute('hidden');
   };
+
   const close = () => {
     panel?.classList.remove('open');
     panel?.setAttribute('hidden','');
     backdrop?.setAttribute('hidden','');
   };
 
-  // Listeners UI
+  // Listeners
   btnOpen?.addEventListener('click', open);
-  openers.forEach(el => el.addEventListener('click', open));
   btnClose?.addEventListener('click', close);
   backdrop?.addEventListener('click', close);
 
@@ -150,7 +159,6 @@ function setMsg(text, ok){
     save(); render(); close();
   });
 
-  // Delegación: + / − / quitar
   itemsBox?.addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b) return;
@@ -164,24 +172,6 @@ function setMsg(text, ok){
     save(); render();
   });
 
-  // Capturar cualquier botón "Agregar" del sitio
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.add-to-cart');
-    if (!btn) return;
-
-    const id    = btn.dataset.id    || crypto.randomUUID();
-    const name  = btn.dataset.name  || 'Producto';
-    const price = parseFloat(btn.dataset.price || '0');
-    const sku   = btn.dataset.sku   || id;
-
-    if (!price) { alert('Precio inválido'); return; }
-
-    const found = cart.find(p => p.id === id);
-    if (found) found.qty++;
-    else cart.push({ id, name, price, qty: 1, sku });
-
-    save(); render(); open();
-  });
-
+  loadCart();
   render();
 })();
